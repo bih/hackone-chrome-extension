@@ -1,6 +1,6 @@
 {
   "name": "HackOne",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "manifest_version": 2,
   "description": "Your hacker profile, saved locally in Chrome. Instantly share it with hackathons.",
   "homepage_url": "https://hackone.me",

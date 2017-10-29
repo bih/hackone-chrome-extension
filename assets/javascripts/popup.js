@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
   HackOne.methods.continueWithSendingData = function(){
     chrome.tabs.executeScript({
-      file: "/js/popup-inject.js"
+      file: "/assets/javascripts/popup-inject.js"
     });
     states.success();
   };
