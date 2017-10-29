@@ -1,0 +1,136 @@
+@charset "UTF-8";
+
+html, body { width: 100%; min-width: 100%; max-width: 100%; height: 100%; min-height: 100%; position: relative; }
+html, body, input, textarea, button { font-family: 'HelveticaNeue-Light', 'Helvetica Neue', 'Arial', 'Verdana'; outline: none; }
+
+.clear { clear: both; }
+
+.hackone-editor #madeby { display: block; text-align: center; color: #fff; background: #DE1673; padding-bottom: 20px; }
+.hackone-editor #madeby #logo { display: inline-block; width: 250px; height: 100px; background: url(/assets/images/logo-white.png) no-repeat bottom center; color: #fff; font-size: 200px; background-size: 100%; }
+.hackone-editor #madeby #logo span p { font-size: 14px; padding: 10px 0; }
+.hackone-editor #madeby #logo span p a#hackcard { display: inline-block; background: url(/assets/images/hackcard-black.png) no-repeat bottom left; width: 58px; background-size: 56px; height: 12px; margin-left: 1px; }
+.hackone-editor #madeby #logo span p a { color: #fff; text-decoration: none; font-weight: bold; }
+.hackone-editor #madeby #logo span p a:hover { text-decoration: underline; }
+.hackone-editor #error:hover, .hackone-editor #error-validations:hover, .hackone-editor #success:hover { cursor: pointer; }
+.hackone-editor #error, .hackone-editor #error-validations, .hackone-editor #success { position: fixed; top: 0; left: 25%; width: 50%; font-size: 16px; }
+.hackone-editor #error { display: none; padding: 20px 30px; background: #CB0F0F; text-align: center; color: #FFF; font-weight: bold; }
+.hackone-editor #error-validations { display: none; padding: 20px 30px; background: #CB0F0F; text-align: center; color: #FFF; font-weight: bold; }
+.hackone-editor #success { display: none; padding: 20px 30px; background: #0F8A0F; text-align: center; color: #FFF; font-weight: bold; }
+.hackone-editor #success a { color: inherit; }
+
+.hackone-editor section { text-align: center; position: relative; }
+.hackone-editor #editor-layout { width: 80%; display: inline-block; text-align: left; }
+.hackone-editor #editor-layout h3 { font-size: 42px; font-weight: 200; padding: 30px 0 15px; }
+.hackone-editor #editor-layout h3 span#username { color: #DE1673; }
+.hackone-editor #editor-layout h3 span#username:after { content: "."; color: inherit; }
+.hackone-editor #editor-layout h3 ul { float: right; }
+.hackone-editor #editor-layout h3 ul li { display: inline-block; vertical-align: top; }
+.hackone-editor #editor-layout h3 ul li a { display: inline-block; margin-top: 3px; vertical-align: top; font-size: 16px;  text-decoration: none; font-weight: 200; color: #fff; background: #4c4c4c; padding: 12px 15px;  border-radius: 10px; -webkit-border-radius: 10px; -moz-border-radius: 10px; -ms-border-radius: 10px; -o-border-radius: 10px; }
+.hackone-editor #editor-layout h3 ul li a:hover { text-decoration: none; }
+.hackone-editor #editor-layout h3 ul li a.delete { background: #CB0F0F; color: #FFF; }
+.hackone-editor #editor-layout h3 ul li a.delete:hover { background: #700909; }
+.hackone-editor #editor-layout p a { color: inherit; }
+.hackone-editor #editor { margin: 20px 0 20px 0; padding: 0 0 0 0px; font-family: 'Menlo', 'HelveticaNeue-Light', 'Helvetica Neue', 'Arial', 'Verdana', 'Times New Roman'; font-size: 18px; line-height: 32px; }
+.hackone-editor #editor .f-bracket { color: #AAA; }
+.hackone-editor #editor .f-inline-bracket { display: inline-block; color: #AAA; }
+.hackone-editor #editor .f-inline-bracket a { display: inline; color: #FFF; background: #DE1673; padding: 0px 5px; text-decoration: none; -webkit-border-radius: 50%; -moz-border-radius: 50%; -ms-border-radius: 50%; -o-border-radius: 50%; border-radius: 50%; }
+.hackone-editor #editor .f-inline-bracket a#f-remove-project { background: #CB0F0F; }
+.hackone-editor #editor .f-inline-bracket a#f-remove-hackathon { background: #CB0F0F; }
+.hackone-editor #editor .f-inline-bracket a#f-remove-work { background: #CB0F0F; }
+.hackone-editor #editor .f-inline-bracket a#f-remove-education { background: #CB0F0F; }
+.hackone-editor #editor .f { padding-left: 30px; }
+.hackone-editor #editor .f-inline-bracket a.limited { background: #CCC; }
+.hackone-editor #editor .f-hierarchy { padding-left: 30px; padding-top: -bio-px; padding-bottom: 6px; }
+.hackone-editor #editor .f-downcase input { text-transform: lowercase; }
+.hackone-editor #editor .f-upcase input { text-transform: uppercase; }
+.hackone-editor #editor .f-bio-location-city input { text-transform: none !important; }
+.hackone-editor #editor .f-bio-location-region input { text-transform: none !important; }
+.hackone-editor #editor .f-bio-location-state input { text-transform: none !important; }
+.hackone-editor #editor label:before { content: ""; color: #BBB; }
+.hackone-editor #editor label:after { content: ":"; color: #BBB; }
+.hackone-editor #editor #string { color: #DE1673; }
+.hackone-editor #editor #string:not(.boolean):before { content: "\""; color: inherit; }
+.hackone-editor #editor #string:not(.boolean):after { content: "\","; color: inherit; }
+.hackone-editor #editor #string.boolean:before { content: ""; color: inherit; }
+.hackone-editor #editor #string.boolean:after { content: ","; color: inherit; }
+.hackone-editor #editor .f-last #string:after { content: "\""; color: inherit; }
+.hackone-editor #editor #string { display: inline-block; }
+.hackone-editor #editor #string input { border: 0; font-family: 'Menlo', 'HelveticaNeue-Light', 'Helvetica Neue', 'Arial', 'Verdana', 'Times New Roman'; font-size: 18px; color: #DE1673; padding: 0; min-width: 28px; width: 28px; }
+.hackone-editor #editor .f.empty input { width: 55px !important; text-transform: none !important; }
+.hackone-editor #editor .f.empty:not(.f-error) input:hover { background: transparent !important; }
+.hackone-editor #editor .f.empty:not(.f-error) #string:before { content: "" !important; }
+.hackone-editor #editor .f.empty:not(.f-error) #string:after { content: "" !important; }
+.hackone-editor #editor .f-boolean #string input { -min-width: 44px; -width: 45px; }
+.hackone-editor #editor .f-boolean #string input.f-boolean-true { min-width: 45px; width: 45px; }
+.hackone-editor #editor .f-boolean #string input.f-boolean-false { min-width: 55px; width: 55px; }
+.hackone-editor #editor #string input.updated { background: yellow; color: #333; }
+.hackone-editor #editor #string input.updated:hover { background: yellow !important; color: #333 !important; }
+.hackone-editor #editor #string input#shirtSize { min-width: 12px; }
+.hackone-editor #editor #string input#bio_gender { min-width: 22px; }
+.hackone-editor #editor #string input#bio_location_countryCode { min-width: 18px; }
+.hackone-editor #editor .f-error #string input { background: #CB0F0F; color: #FFF !important; }
+.hackone-editor #editor .f-error #string:before, .hackone-editor #editor .f-error #string:after { background: #FFF; color: #CB0F0F; }
+.hackone-editor #editor .f-error #string input:not(:focus):not([readonly]):hover { background: #CB0F0F !important; }
+.hackone-editor #editor #string input:not([readonly]):not(:focus):hover { background: #eee; color: #333; cursor: pointer; }
+.hackone-editor #editor .f-skills { display: inline; }
+.hackone-editor #editor .f-hackathons { display: inline; }
+.hackone-editor #editor .f-hackathon-awards { display: inline; }
+.hackone-editor #editor .f-hackathon-project-technologies { display: inline; }
+.hackone-editor #editor .f.array { display: inline; }
+.hackone-editor #editor .f-array #string input { width: 20px; text-transform: none; }
+.hackone-editor #editor .f-array.f-education-areas #string input { text-transform: none; }
+.hackone-editor #editor .f-array.f-hackathon-awards #string input { text-transform: none; }
+.hackone-editor #editor .f-array #string:after { content: "\","; padding-right: 10px; }
+.hackone-editor #editor .f-array #string:last-child:after { content: "\""; padding-right: 0; }
+.hackone-editor #editor .f-works { display: inline; }
+.hackone-editor #editor .f-educations { display: inline; }
+.hackone-editor #editor .f-education-areas { display: inline; }
+.hackone-editor #editor .f-projects { display: inline; }
+.hackone-editor #editor .f-projects .f-project > .f-inline-bracket:last-child:before { content: "} "; color: #AAA; font-size: 19px; }
+.hackone-editor #editor .f-projects .f-project:not(:last-child) > .f-inline-bracket:last-child:before { content: "}, "; color: #AAA; font-size: 19px; }
+.hackone-editor #editor .f-projects .f-project:last-child > .f-inline-bracket.f-remove-bracket:last-child:before { content: "} "; color: #AAA; font-size: 19px; }
+
+.hackone-editor #editor .f-hackathons .f-hackathon > .f-inline-bracket:last-child { color: #AAA; width: 1px; display: inline; }
+.hackone-editor #editor .f-hackathons .f-hackathon:not(:last-child) > .f-inline-bracket:last-child:before { content: "}, " !important; color: #AAA; font-size: 19px; }
+.hackone-editor #editor .f-hackathons .f-hackathon:last-child > .f-inline-bracket:last-child:before { content: "} " !important; color: #AAA; font-size: 19px; }
+
+.hackone-editor #editor .f-works .f-work > .f-inline-bracket:last-child:before { content: "}, "; }
+.hackone-editor #editor .f-works .f-work > .f-inline-bracket.f-final-bracket:last-child:before { content: "} "; }
+
+.hackone-editor #editor .f-educations .f-education > .f-inline-bracket:last-child:before { content: "}, "; }
+.hackone-editor #editor .f-educations .f-education:last-child > .f-inline-bracket:last-child:before { content: "} "; }
+
+.hackone-editor #editor #comment { color: #AAA; display: inline-block; }
+.hackone-editor #editor #comment:before { content: "// "; }
+
+.hackone-editor #editor #string input::-webkit-input-placeholder { color: #bbb; }
+.hackone-editor #editor #string input:-moz-placeholder { color: #bbb; opacity: 1; }
+.hackone-editor #editor #string input::-moz-placeholder { color: #bbb; opacity: 1; }
+.hackone-editor #editor #string input:-ms-input-placeholder { color: #bbb; }
+
+.hackone-editor #editor .f-error #string input::-webkit-input-placeholder { color: #FFF; }
+.hackone-editor #editor .f-error #string input:-moz-placeholder { color: #FFF; opacity: 1; }
+.hackone-editor #editor .f-error #string input::-moz-placeholder { color: #FFF; opacity: 1; }
+.hackone-editor #editor .f-error #string input:-ms-input-placeholder { color: #FFF; }
+
+.hackone-editor #editor #submit { width: 100%; padding: 25px; font-size: 18px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 15px; background: #DE1673; color: #fff; text-shadow: 0 1px rgba(0, 0, 0, 0.1); border: 0; border-radius: 20px; border-bottom: 4px solid #DE1673; }
+.hackone-editor #editor #submit:hover { background: #06676B; border-bottom-color: #06676B; }
+.hackone-editor #editor #submit:active { position: relative; top: 4px; }
+
+#buttons { text-align: center; }
+#buttons ul { display: inline-block; width: auto; }
+#buttons ul li { display: inline-block; }
+#buttons ul li a { display: inline-block; width: 30px; height: 30px; border: 8px solid #fff; }
+#buttons ul li a.selected, #buttons ul li a:hover { border-color: rgba(255, 255, 255, 0.75); }
+
+.icon { display: block; width: 100%; min-width: 200px; height: 200px; background-position: top center; background-repeat: no-repeat; }
+.icon.icon-universal { background-image: url(/assets/images/icon-universal.png); background-size: 200px; }
+.icon.icon-secure { background-image: url(/assets/images/icon-secure.png); background-size: 150px; }
+.dotted:after { content: "."; color: #DE1673; }
+
+footer { padding: 20px 0; text-align: center; }
+footer p { font-size: 14px; color: #999; }
+footer p a { text-decoration: none; color: #999; }
+footer p a:hover { text-decoration: underline; }
+
+@media(max-width: 800px) {}

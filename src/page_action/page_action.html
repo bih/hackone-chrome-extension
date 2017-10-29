@@ -1,0 +1,231 @@
+<!doctype html>
+<script src="/assets/javascripts/external.progressbar.js"></script>
+<script src="/assets/javascripts/popup.js"></script>
+
+<style type="text/css">
+	#mainPopup {
+    width: 210px;
+    height: 200px;
+		font-family: "Helvetica Neue", Ubuntu, Arial, sans-serif;
+    font-weight: 200;
+    position: relative;
+	}
+  .logo {
+    display: block;
+    background: url(/assets/images/logo-white.png) no-repeat center center;
+    background-size: 180px;
+    width: 100%;
+    height: 50px;
+    outline: none;
+    text-decoration: none;
+  }
+  .logo.white {
+    background: url(/assets/images/logo-white.png) no-repeat center center;
+  }
+  .logo.black {
+    background: url(/assets/images/logo-black.png) no-repeat center center;
+  }
+  .logo.small {
+    background-size: 130px;
+  }
+  .logo.center {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    z-index: 100;
+  }
+  .logo.top {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    z-index: 100;
+  }
+  .logo p {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 11px;
+    color: #fff;
+    text-decoration: none;
+  }
+  .logo p:hover {
+    text-decoration: underline;
+  }
+  .state {
+    width: 210px;
+    height: 200px;
+  }
+  .state.pending {
+    display: block;
+    text-align: center;
+  }
+  .state.pending #pending-circle {
+    width: 200px;
+    margin: 0 auto;
+  }
+  .state.review {
+    background: transparent;
+  }
+  .state.review a.still-share {
+    display: none;
+    outline: none;
+    color: #000;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  .state.review a.still-share:hover {
+    text-decoration: underline;
+  }
+	h1 {
+		font-size: 18px;
+    margin: 0;
+	}
+  h1.icon.icon-pending {
+    background: url("/assets/images/external.pending.png") no-repeat center top;
+    background-size: 75px;
+    width: 100%;
+    height: 80px;
+    display: block;
+  }
+  h1.icon.icon-success {
+    background: url("/assets/images/external.success.png") no-repeat center top;
+    background-size: 75px;
+    width: 100%;
+    height: 80px;
+    display: block;
+  }
+  h1.icon.icon-error {
+    background: url("/assets/images/external.error.png") no-repeat center top;
+    background-size: 75px;
+    width: 100%;
+    height: 80px;
+    display: block;
+  }
+  h1.icon.center {
+    position: relative;
+    top: 60px;
+    left: 0;
+    width: 100%;
+  }
+  div.circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: all 0.05s ease-in-out;
+    -moz-transition: all 0.05s ease-in-out;
+    -o-transition: all 0.05s ease-in-out;
+    transition: all 0.05s ease-in-out;
+  }
+  div.circle > span {
+    display: block;
+    margin: 18px auto 0;
+    border: 10px solid #aaa;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    -webkit-transition: all 0.05s ease-in-out;
+    -moz-transition: all 0.05s ease-in-out;
+    -o-transition: all 0.05s ease-in-out;
+    transition: all 0.05s ease-in-out;
+  }
+  div.circle > span p {
+    display: none;
+    padding: 10px;
+    font-size: 13px;
+    line-height: 16px;
+    margin: 0;
+  }
+  div.circle > span h4 {
+    display: none;
+  }
+  div.circle > span p span {
+    display: inline;
+    font-weight: normal;
+    text-decoration: underline;
+  }
+  div.circle:hover span p,
+  div.circle:hover span h4 {
+    display: block;
+  }
+  div.circle:hover a.still-share {
+    display: inline;
+  }
+  div.circle.circle-error span {
+    border-color: #962D2D;
+  }
+  div.circle.circle-error:hover span {
+    background: #962D2D;
+    color: #fff;
+  }
+  div.circle.circle-error a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  div.circle.circle-error a:hover {
+    text-decoration: underline;
+  }
+  div.circle.circle-success span {
+    border-color: #009966;
+  }
+  div.circle.circle-review span {
+    border-color: #f8c901;
+  }
+  div.circle.circle-review:hover span {
+    background: #f8c901;
+  }
+  div.circle.clear span {
+    border-color: transparent;
+  }
+  h2 {
+    font-weight: 800;
+    font-size: 20px;
+    text-align: center;
+    margin: 0;
+    letter-spacing: -.5px;
+  }
+  h4 {
+    font-size: 19px;
+    text-align: center;
+    margin-bottom: 0;
+    margin-top: 35px;
+  }
+  p {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 200;
+    line-height: 15px;
+    margin: 5px 0 0;
+  }
+  p span {
+    font-weight: 800;
+  }
+</style>
+
+<div id="mainPopup" class="review">
+  <div class="state pending" style="display: none">
+    <a class="logo center" href="/src/options/index.html" target="_blank">
+      <p id="information"></p>
+    </a>
+    <div id="pending-circle"></div>
+  </div>
+
+  <div class="state success" style="display: none">
+    <h1 class="icon icon-success center"></h1>
+    <div class="circle circle-success">
+      <span class="inner-circle"></span>
+    </div>
+  </div>
+
+  <div class="state error incomplete" style="display: none">
+    <h1 class="icon icon-error center"></h1>
+    <div class="circle circle-error">
+      <span class="inner-circle">
+        <h4>Incomplete</h4>
+        <p>Your profile isn't complete. <a href="/src/options/index.html" target="_blank">Fill it out.</a></p>
+      </span>
+    </div>
+  </div>
+
+</div>

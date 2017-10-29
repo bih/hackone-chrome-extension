@@ -1,0 +1,330 @@
+<!doctype html>
+<html>
+<head>
+<title>HackOne Settings</title>
+
+<script src="/assets/javascripts/editor/jquery.min.js"></script>
+<script src="/assets/javascripts/editor/jquery.serializeObject.min.js"></script>
+<script src="/assets/javascripts/editor/tooltip.min.js"></script>
+<script src="/assets/javascripts/editor/rainbow.min.js"></script>
+<script src="/assets/javascripts/editor/editor.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/assets/stylesheets/reset.css" />
+<link rel="stylesheet" type="text/css" href="/assets/stylesheets/tooltip.css" />
+<link rel="stylesheet" type="text/css" href="/assets/stylesheets/syntax-highlighting.css" />
+<link rel="stylesheet" type="text/css" href="/assets/stylesheets/animate.css" />
+<link rel="stylesheet" type="text/css" href="/assets/stylesheets/editor.css" />
+</head>
+<body>
+
+<div class="hackone-editor">
+<div id="madeby">
+  <div id="logo" class="the-tooltip bottom center ho"></div>
+</div>
+
+<section>
+  <div id="error">
+    Error. Some fields don't look right.
+  </div>
+
+  <div id="error-validations">
+    You need to complete the fields in red to save your profile. 
+  </div>
+
+  <div id="success">
+    Success! Your profile has successfully been updated.
+  </div>
+
+  <div id="editor-layout">
+    <h3>
+      Edit <span id="username"></span>json
+        <ul>
+          <li><a href="#" class="download-json" download="export.json">Download as JSON</a></li>
+          <li><a href="#" data-confirm="Warning: Are you sure? Your information will be irrevocably deleted from your computer and all of your Chrome devices." class="delete">Delete</a></li>
+        </ul>
+      </h3>
+    <p>All of your data is always locally stored. It will be <strong>only ever</strong> be shared with a website/hackathon when you click the "HackOne" button in your toolbar.</p>
+
+    <form action="#" method="post" autocomplete="off" id="editor" data-active="false" data-silent="false">
+
+      <div class="f-bracket">{</div>
+      
+      <!-- Username -->
+      <div class="f f-string f-downcase f-required f-username" data-taken="">
+        <label for="username">username</label> <!-- field name -->
+        <div id="string"><input type="text" placeholder="empty" maxlength="25" id="username" name="userData[username]" value="" /></div> <!-- field value -->
+        <div id="comment"></div>
+      </div>
+
+      <!-- Shirt -->
+      <div class="f f-string f-upcase f-shirtsize">
+        <label for="shirtSize">shirtSize</label> <!-- field name -->
+        <div id="string"><input type="text" placeholder="empty" maxlength="100" id="shirtSize" name="userData[shirtSize]" value="" /></div> <!-- field value -->
+        <div id="comment"></div>
+      </div>
+
+      <!-- Last Updated -->
+      <div class="f f-string">
+        <label for="lastUpdated">lastUpdated</label> <!-- field name -->
+        <div id="string"><input type="text" placeholder="empty" maxlength="100" id="lastUpdated" name="userData[lastUpdated]" value="" /></div> <!-- field value -->
+        <div id="comment"></div>
+      </div>
+
+      <!-- Bio -->
+      <div class="f-hierarchy">
+        <label>bio</label> <!-- field name -->
+        <div class="f-inline-bracket">{</div>
+
+          <!-- Bio: First Name -->
+          <div class="f f-string f-bio-firstname">
+            <label for="bio_firstName">firstName</label> <!-- field name -->
+            <div id="string"><input type="text" placeholder="empty" maxlength="50" id="bio_firstName" name="userData[bio][firstName]" value="" /></div> <!-- field value -->
+            <div id="comment"></div>
+          </div>
+
+          <!-- Bio: Last Name -->
+          <div class="f f-string f-bio-lastname">
+            <label for="bio_lastName">lastName</label> <!-- field name -->
+            <div id="string"><input type="text" placeholder="empty" maxlength="50" id="bio_lastName" name="userData[bio][lastName]" value="" /></div> <!-- field value -->
+            <div id="comment"></div>
+          </div>
+
+          <!-- Bio: Gender -->
+          <div class="f f-string f-downcase f-bio-gender">
+            <label for="bio_gender">gender</label> <!-- field name -->
+            <div id="string"><input type="text" placeholder="empty" id="bio_gender" name="userData[bio][gender]" value="" /></div> <!-- field value -->
+            <div id="comment"></div>
+          </div>
+
+          <!-- Bio: Email Address -->
+          <div class="f f-string f-email f-downcase f-required f-bio-email">
+            <label for="bio_email">email</label> <!-- field name -->
+            <div id="string"><input type="text" placeholder="empty" maxlength="50" id="bio_email" name="userData[bio][email]" value="" /></div> <!-- field value -->
+            <div id="comment"></div>
+          </div>
+
+          <!-- Bio: Phone Number -->
+          <div class="f f-string f-bio-phone">
+            <label for="bio_phone">phone</label> <!-- field name -->
+            <div id="string"><input type="text" placeholder="empty" maxlength="50" id="bio_phone" name="userData[bio][phone]" value="" /></div> <!-- field value -->
+            <div id="comment"></div>
+          </div>
+
+          <!-- Bio: dietaryRestrictions -->
+          <div class="f f-string f-bio-dietaryrestrictions">
+            <label bio="bio_dietaryRestrictions">dietaryRestrictions</label> <!-- field name -->
+            <div id="string"><input type="text" placeholder="empty" maxlength="150" id="bio_dietaryRestrictions" name="userData[bio][dietaryRestrictions]" value="" /></div> <!-- field value -->
+            <div id="comment"></div>
+          </div>
+
+          <!-- Bio: Summary -->
+          <div class="f f-string f-bio-summary">
+            <label for="bio_summary">summary</label> <!-- field name -->
+            <div id="string"><input type="text" placeholder="empty" maxlength="250" id="bio_summary" name="userData[bio][summary]" value="" /></div> <!-- field value -->
+            <div id="comment"></div>
+          </div>
+
+          <!-- Location -->
+          <div class="f-hierarchy">
+            <label>location</label> <!-- field name -->
+            <div class="f-inline-bracket">{</div>
+
+            <!-- Bio: Location: City -->
+            <div class="f f-string f-bio-location-city f-downcase">
+              <label for="bio_location_city">city</label> <!-- field name -->
+              <div id="string"><input type="text" placeholder="empty" maxlength="100" id="bio_location_city" name="userData[bio][location][city]" value="" /></div> <!-- field value -->
+              <div id="comment"></div>
+            </div>
+
+            <!-- Bio: Location: Country Code -->
+            <div class="f f-string f-bio-location-countrycode f-required f-upcase">
+              <label for="bio_location_countryCode">countryCode</label> <!-- field name -->
+              <div id="string"><input type="text" placeholder="empty" maxlength="2" id="bio_location_countryCode" name="userData[bio][location][countryCode]" value="" /></div> <!-- field value -->
+              <div id="comment"></div>
+            </div>
+
+            <!-- Bio: Location: Region -->
+            <div class="f f-string f-bio-location-region f-downcase">
+              <label for="bio_location_region">region</label> <!-- field name -->
+              <div id="string"><input type="text" placeholder="empty" maxlength="100" id="bio_location_region" name="userData[bio][location][region]" value="" /></div> <!-- field value -->
+              <div id="comment"></div>
+            </div>
+
+            <!-- Bio: Location: City -->
+            <div class="f f-string f-last f-bio-location-state f-downcase">
+              <label for="bio_location_state">state</label> <!-- field name -->
+              <div id="string"><input type="text" placeholder="empty" maxlength="100" id="bio_location_state" name="userData[bio][location][state]" value="" /></div> <!-- field value -->
+              <div id="comment"></div>
+            </div>
+
+            <div class="f-bracket">},</div>
+          </div>
+
+          <!-- Websites -->
+          <div class="f-hierarchy">
+            <label>websites</label> <!-- field name -->
+            <div class="f-inline-bracket">{</div>
+
+            <div class="f f-string f-link f-bio-websites-personal">
+              <label for="bio_websites_personal">personal</label> <!-- field name -->
+              <div id="string"><input type="text" placeholder="empty" maxlength="100" id="bio_websites_personal" name="userData[bio][websites][personal]" value="" /></div> <!-- field value -->
+              <div id="comment"></div>
+            </div>
+
+            <div class="f f-string f-link f-bio-websites-facebook">
+              <label for="bio_websites_facebook">facebook</label> <!-- field name -->
+              <div id="string"><input type="text" placeholder="empty" maxlength="100" id="websites_facebook" name="userData[bio][websites][facebook]" value="" /></div> <!-- field value -->
+              <div id="comment"></div>
+            </div>
+
+            <div class="f f-string f-link f-bio-websites-twitter">
+              <label for="bio_websites_twitter">twitter</label> <!-- field name -->
+              <div id="string"><input type="text" placeholder="empty" maxlength="100" id="bio_websites_twitter" name="userData[bio][websites][twitter]" value="" /></div> <!-- field value -->
+              <div id="comment"></div>
+            </div>
+
+            <div class="f f-string f-link f-bio-websites-github">
+              <label for="bio_websites_github">github</label> <!-- field name -->
+              <div id="string"><input type="text" placeholder="empty" maxlength="100" id="bio_websites_github" name="userData[bio][websites][github]" value="" /></div> <!-- field value -->
+              <div id="comment"></div>
+            </div>
+
+            <div class="f f-string f-link f-bio-websites-linkedin">
+              <label for="bio_websites_linkedin">linkedin</label> <!-- field name -->
+              <div id="string"><input type="text" placeholder="empty" maxlength="100" id="bio_websites_linkedin" name="userData[bio][websites][linkedin]" value="" /></div> <!-- field value -->
+              <div id="comment"></div>
+            </div>
+
+            <div class="f f-string f-link f-bio-websites-dribbble">
+              <label for="bio_websites_dribbble">dribbble</label> <!-- field name -->
+              <div id="string"><input type="text" placeholder="empty" maxlength="100" id="bio_websites_dribbble" name="userData[bio][websites][dribbble]" value="" /></div> <!-- field value -->
+              <div id="comment"></div>
+            </div>
+
+            <div class="f f-string f-link f-bio-websites-challengepost">
+              <label for="bio_websites_challengepost">challengepost</label> <!-- field name -->
+              <div id="string"><input type="text" placeholder="empty" maxlength="100" id="bio_websites_challengepost" name="userData[bio][websites][challengepost]" value="" /></div> <!-- field value -->
+              <div id="comment"></div>
+            </div>
+
+            <div class="f f-string f-link f-bio-websites-ocean">
+              <label for="bio_websites_ocean">ocean</label> <!-- field name -->
+              <div id="string"><input type="text" placeholder="empty" maxlength="100" id="bio_websites_ocean" name="userData[bio][websites][ocean]" value="" /></div> <!-- field value -->
+              <div id="comment"></div>
+            </div>
+
+            <div class="f f-string f-link f-last f-bio-websites-blog">
+              <label for="bio_websites_blog">blog</label> <!-- field name -->
+              <div id="string"><input type="text" placeholder="empty" maxlength="100" id="bio_websites_blog" name="userData[bio][websites][blog]" value="" /></div> <!-- field value -->
+              <div id="comment"></div>
+            </div>
+
+            <div class="f-bracket">},</div>
+          </div>
+
+          <!-- Resume -->
+          <div class="f f-string f-link f-bio-resume">
+            <label for="bio_resume">resume</label> <!-- field name -->
+            <div id="string"><input type="text" placeholder="empty" id="bio_resume" name="userData[bio][resume]" value="" /></div> <!-- field value -->
+            <div id="comment"></div>
+          </div>
+
+          <!-- Picture -->
+          <div class="f f-string f-link f-last f-bio-picture">
+            <label for="bio_picture">picture</label> <!-- field name -->
+            <div id="string"><input type="text" placeholder="empty" id="bio_picture" name="userData[bio][picture]" value="" /></div> <!-- field value -->
+            <div id="comment"></div>
+          </div>
+
+        <div class="f-bracket">},</div>
+      </div>
+
+      <!-- Education -->
+      <div class="f-hierarchy">
+        <label>education</label>
+        <div class="f-inline-bracket">[</div>
+
+        <div class="f-educations">
+          
+          
+        </div>
+
+        <div class="f-inline-bracket">], <a href="#" id="f-add-education" title="Add new education" data-count="0">+</a></div>
+      </div>
+
+      <!-- Work -->
+      <div class="f-hierarchy">
+        <label>work</label> <!-- field name -->
+        <div class="f-inline-bracket">[</div>
+
+        <div class="f-works">
+          
+          
+        </div>
+
+        <div class="f-inline-bracket">], <a href="#" id="f-add-work" title="Add new work" data-count="0">+</a></div>
+      </div>
+
+      <!-- Hackathons -->
+      <div class="f-hierarchy">
+        <label>hackathons</label> <!-- field name -->
+        <div class="f-inline-bracket">[</div>
+
+        <div class="f-hackathons">
+          
+          
+        </div>
+
+        <div class="f-inline-bracket">], <a href="#" id="f-add-hackathon" title="Add new hackathon" data-count="0">+</a></div>
+      </div>
+
+      <!-- Projects -->
+      <div class="f-hierarchy">
+        <label>projects</label> <!-- field name -->
+        <div class="f-inline-bracket">[</div>
+
+          <div class="f-projects">
+            
+            
+          </div>
+
+        <div class="f-inline-bracket">], <a href="#" id="f-add-project" title="Add new project" data-count="0">+</a></div>
+      </div>
+
+      <!-- Skills -->
+      <div class="f-hierarchy">
+        <label>skills</label> <!-- field name -->
+        <div class="f-inline-bracket">[</div>
+
+        <div class="f-array f-skills">
+          
+          
+        </div>
+
+        <div class="f-inline-bracket">] <a href="#" id="f-add-skill" title="Add new skill" data-count="0">+</a></div>
+      </div>
+
+      <div class="f-bracket">}</div>
+
+      <button type="submit" id="submit" class="submit">Click to Update HackOne profile</button>
+    </form>
+
+  </div>
+</section>
+
+</div>
+
+<div id="buttons">
+<ul>
+  <li><a href="#" class="set-colour" data-colour="#DE1673" style="background: #DE1673" title="Happiness Red"></a></li>
+  <li><a href="#" class="set-colour" data-colour="#7319E0" style="background: #7319E0" title="Luxury Purple"></a></li>
+  <li><a href="#" class="set-colour" data-colour="#49C583" style="background: #49C583" title="Lush Green"></a></li>
+  <li><a href="#" class="set-colour" data-colour="#058FFF" style="background: #058FFF" title="Maroon Red"></a></li>
+</ul>
+</div>
+
+<footer>
+  <p>Open sourced under the Apache 2.0 License. <a href='https://github.com/bih/hackone-chrome-extension' target='_blank'>View project on GitHub</a>.</p>
+</footer>
+</body>
+</html>
